@@ -118,7 +118,7 @@ fn get_ax25_netdev(name: &str, fd: i32) -> Option<NetDev> {
     let mut req = ifreq::default();
     let if_name = name.to_owned();
     for (d, s) in req.ifr_name.iter_mut().zip(if_name.as_bytes()) {
-        *d = *s as i8;
+        *d = *s as u8;
     }
 
     if unsafe { ioctl(fd, SIOCGIFHWADDR, &mut req) } == -1 {
